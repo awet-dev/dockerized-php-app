@@ -12,29 +12,52 @@ This repository contains a Dockerized PHP environment for seamless development a
 
 1. Clone the repository:
    ```bash
-   git clone git@github.com:awet-dev/dockerized-php-app.git
+   git clone https://github.com/awet-dev/dockerized-php-app.git
 2. Start the container:
    ```bash
+   cd docker
+   ```
+    ```bash
    docker compose up -d 
+
+### Check the web services
+- adminer: visit [adminer](http://localhost:8080) then connect using the database variables
+- Mailer: visit [mailcatcher](http://localhost:1080)
 
 ### Add or Create your php app
 
 - #### Existing application
-  - From Git repository you can use this command to add your app to the application directory
-    ```bash
-      git clone <repository-url> application
+- From Git repository you can use this command to add your app to the application directory
+  ```bash
+    git clone <repository-url> application
 - #### New Application
-  - whether it is laravel or symfony you can create your project with the composer command
+  > whether it is laravel or symfony you can create your project with the composer command
+  > ```bash
+  > docker exec -it docker-server-1 bash
+  > 
 
-### Configure your environment variables 
-> i.e symfony replace the variables starting with MYSQL_ with the configuration in compose.yaml file for db service, and so the same for mailer and so on
-> ```bash 
-> DATABASE_URL="mysql://MYSQL_USER:MYSQL_PASSWORD@db:3306/MYSQL_DATABASE?serverVersion=8.3.0&charset=utf8mb4"
->
+  > Check if composer installed and use the composer to create your app   
+  > ```bash
+  > composer -v
+  > 
 
-### Check the web services  
-- adminer: visit [adminer](http://localhost:8080)
-- Mailer: visit [mailcatcher](http://localhost:1080)
+  > For Symfony you can create using this command
+  > ```bash
+  > composer create-project symfony/skeleton:"7.0.*" .
+  > ```
+  > If it is web app run the following command otherwise skip it
+  > ```bash
+  > composer require webapp
+  > ```
+  > If you asked to add docker configuration enter no, because you already have docker configuration
+
+### Configure your environment variables
+-  symfony replace the variables starting with MYSQL_ with the configuration in compose.yaml file for db service, and so the same for mailer and so on
+    > ```copy 
+    > DATABASE_URL="mysql://MYSQL_USER:MYSQL_PASSWORD@db:3306/MYSQL_DATABASE?serverVersion=8.3.0&charset=utf8mb4"
+    > ```
+    > ```copy
+    > MAILER_DSN=smtp://mailer:1080
 
 Finally you are ready to go, enjoy coding
  
