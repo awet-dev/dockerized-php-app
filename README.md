@@ -51,11 +51,6 @@ This repository contains a Dockerized PHP environment for seamless development a
   > ```
   > If you asked to add docker configuration enter no, because you already have docker configuration
 
-  > Install apache-pack for the routing, otherwise you will not be able to visit different path other than the home page
-  > ```bash
-  > composer require symfony/apache-pack
-  > 
-
 ### Configure your environment variables
 -  symfony replace the variables starting with MYSQL_ with the configuration in compose.yaml file for db service, and so the same for mailer and so on
    > ```copy 
