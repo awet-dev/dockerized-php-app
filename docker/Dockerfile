@@ -57,7 +57,7 @@ RUN pecl install xdebug-3.3.1 \
    && docker-php-ext-enable xdebug
 
 # Copy the xdebug configuration
-COPY xdebug.ini "$PHP_INI_DIR/conf.d"
+COPY xdebug.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 
 # Use the default production configuration for PHP runtime arguments, see
 # https://github.com/docker-library/docs/tree/master/php#configuration
