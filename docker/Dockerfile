@@ -32,8 +32,8 @@ RUN a2enmod rewrite headers
 # installs the 'gd' extension. For additional tips on running apt-get:
 # https://docs.docker.com/go/dockerfile-aptget-best-practices/
 RUN apt-get update && apt-get install -y \
-    libzip-dev \
     unzip \
+    libzip-dev \
     libfreetype-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -41,12 +41,6 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     &&  docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install zip pdo_mysql
-
-# Copy composer installable
-COPY ./install-composer.sh ./
-
-RUN sh ./install-composer.sh \
-    && rm ./install-composer.sh
 
 # Add PECL extensions, see
 # https://github.com/docker-library/docs/tree/master/php#pecl-extensions
@@ -62,6 +56,11 @@ COPY xdebug.ini "$PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini"
 # Use the default production configuration for PHP runtime arguments, see
 # https://github.com/docker-library/docs/tree/master/php#configuration
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+
+# Copy composer installable
+COPY ./install-composer.sh ./
+
+RUN sh ./install-composer.sh && rm ./install-composer.sh
 
 # Switch to a non-privileged user (defined in the base image) that the app will run under.
 # See https://docs.docker.com/go/dockerfile-user-best-practices/
