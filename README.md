@@ -22,7 +22,7 @@ This repository contains a Dockerized PHP environment for seamless development a
 
 ### Check the web services
 - adminer: visit [adminer](http://localhost:8080) then connect using the database variables
-- Mailer: visit [mailcatcher](http://localhost:1080)
+- Mailer: visit [mailcatcher](http://localhost:1025)
 
 ### Add or Create your php app
 
